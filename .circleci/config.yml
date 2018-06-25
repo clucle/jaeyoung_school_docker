@@ -21,5 +21,9 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true # default - false  
       - run: docker build -t hi .
-
-
+      - run: 
+          name: docker push
+          command: 
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            docker tag hi $DOCKER_USER/hoho:${CIRCLE_SHA1:0:4}
+            docker push $DOCKER_USER/hoho
