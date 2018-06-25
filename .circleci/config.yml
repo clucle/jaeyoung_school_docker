@@ -23,7 +23,7 @@ jobs:
       - run: docker build -t hi .
       - run: 
           name: docker push
-          command: 
+          command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
             docker tag hi $DOCKER_USER/hoho:${CIRCLE_SHA1:0:4}
             docker push $DOCKER_USER/hoho
